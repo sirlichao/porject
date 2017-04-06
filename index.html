@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link href="css/jquery-ui.css" rel="stylesheet">
+		<style>
+		#items { list-style: none; }
+		#items li {
+			margin: 0.5em;
+			padding: 0.5em;
+			border: 1px solid black;
+			border-radius: 5px;
+			width: 100px;
+			cursor: move;
+		}
+		#cart { 
+			position: fixed;
+			top: 0;
+			right: 0;
+			height: 50px;
+			width: 150px;
+			border: 2px solid black;
+			text-align: center;
+			padding-top: 20px;
+			line-height: 10px;
+			box-sizing: border-box;
+			overflow: hidden;
+		}
+		#cart1:hover{
+			display: block;
+		}
+		#cart:hover{
+			height: auto;
+			overflow:visible;
+		}
+		#cart.active {
+			border: 2px dotted black;
+		}
+		#cart.hover {
+			opacity: 0.5;
+		}
+	</style>
+	</head>
+	<body>
+
+<ul id="items">
+	<li>测试数据一</li>
+	<li>测试数据二</li>
+	<li>测试数据三</li>
+	<li>测试数据四</li>
+	<li>测试数据五</li>
+	<li>测试数据六</li>
+</ul>
+<div id="cccccccccccccccc"></div>
+<div id="cart" style="width: 400px;margin: 0px;padding: 0px;">
+	<div id="cart1" style="margin: 0px;padding: 0px;"></div>
+</div>
+
+<script src="js/jquery.js"></script>
+<script src="js/jquery-ui.js"></script>
+
+<script>
+	$( "#items li" ).draggable({
+		cursor: "move",
+		revert: "invalid",
+		helper: "clone"
+	});
+	
+	$( "#cart" ).droppable({
+		activeClass: "active",
+		hoverClass: "hover",
+		drop: function( event, ui ) {
+			var helper=ui.helper;
+			var cc=helper[0];
+			var cc1=$(cc).clone().removeAttr("class").removeAttr("style")
+			.attr("style","list-style-type: none;float: left;border: dotted;height: 25px;text-align: center;line-height: 50px;");
+			$(cc1).appendTo("#cart1");
+			$(cc1).draggable({
+				cursor: "move",
+//				revert: "invalid",
+				 stop: function( event, ui ) {
+				 	$(ui.helper[0]).remove();
+//				 	alert("======================");
+				 }
+	});
+		},
+		activate:function(event, ui ){
+			console.info("activate");
+			
+		},
+		create:function(event, ui){
+			console.info("===========================");
+		},
+		deactivate:function(event, ui){
+			console.info("-------------------------------");
+		},
+		out:function(event, ui){
+			console.info("777777777777777777777777777777777");
+		},
+		tolerance: "touch"
+	});
+	
+	
+	
+</script>
+
+</body>
+</html>

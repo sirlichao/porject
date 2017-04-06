@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+</html>
+<script src="js/jquery.js"></script>
+<script>
+	$(function(){
+	//获取 job的信息
+   function getProgress(){
+   	processReturnData();
+   }
+   //处理返回回来的数据
+   function processReturnData(){
+//	   if(rtnJson['state']=='failed'){//这个说明并没有提交到集群中去
+//		   $("#showProgressInfoId").val("任务提交或运行失败,请检查日志记录");
+//	   }
+//	   else{
+//		   if(rtnJson['state']='ACCEPTED'){//说明任务正在提交中
+//			   $("#showProgressInfoId").val("任务提交中");
+//		   }
+//		   
+//		   else{
+//			   if(rtnJson['applicationId']=='FAILED'){//说明提交失败了
+//				   $("#showProgressInfoId").val("任务运行过程中出错了");
+//				   return ;
+//			   }
+//			   if(rtnJson['applicationId']){
+//				   $("#applicationId").val(rtnJson['applicationId']);
+//			   }
+//			   $("#applicationId").val(rtnJson['progress']);
+//		   }
+//	   }
+      alert("=========================================");
+   }
+	var t = setInterval(getProgress,1000);
+});
+</script>
